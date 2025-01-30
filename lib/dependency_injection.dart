@@ -1,3 +1,4 @@
+import 'package:fortresstestapp/features/business_hours/view/business_bloc/bussines_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:fortresstestapp/features/business_hours/data/data_sources/business_service.dart';
@@ -16,4 +17,6 @@ void setup() async {
       () => BusinessRepositoryImpl(sl()));
 
   sl.registerLazySingleton<GetBusinesses>(() => GetBusinesses(sl()));
+
+  sl.registerFactory<BusinessBloc>(() => BusinessBloc(getBusinesses: sl()));
 }
