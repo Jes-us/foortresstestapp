@@ -1,6 +1,8 @@
 import 'package:fortresstestapp/features/business_hours/domain/entities/business.dart';
 
-abstract class BusinessState {}
+abstract class BusinessState {
+  int toDay = DateTime.now().weekday;
+}
 
 class BusinessInitial extends BusinessState {}
 // Estado inicial

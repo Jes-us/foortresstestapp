@@ -34,6 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: CircularProgressIndicator(),
             );
           } else if (state is BusinessLoaded) {
+            String toDay = BusinessBloc.getTodayDay(state.toDay);
+
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -43,7 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 final business = state.businesses[index];
                 return GestureDetector(
                   onTap: () {},
-                  child: CustomCard(business: business, index: index),
+                  child: CustomCard(
+                    business: business,
+                    index: index,
+                    toDay: toDay,
+                    //toDay: 'Monday',
+                  ),
                 );
               },
             );
