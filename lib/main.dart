@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fortresstestapp/dependency_injection.dart' as di;
+import 'package:fortresstestapp/features/business_hours/domain/use_cases/get_bussiness.dart';
 
-void main() {
+void main() async {
+  di.setup();
   runApp(const MyApp());
 }
 
@@ -55,7 +58,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -64,7 +67,13 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      //_counter++;
+      di.sl<GetBusinesses>()().then((either) {
+        either.fold(
+          (failure) => print('Error: $failure'), // Si hay error
+          (businesses) => print('Negocios: $businesses'), // Si es éxito
+        );
+      });
     });
   }
 
